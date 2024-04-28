@@ -4,30 +4,72 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                // Add your build steps here
-                echo 'Building...'
+                // Build code using Maven
+                bat 'mvn clean package'
             }
         }
         
-        stage('Complete') {
+        stage('Unit and Integration Tests') {
             steps {
-                echo 'Completed'
+                // Run unit tests using Maven (Surefire Plugin)
+                bat 'mvn test'
+                
+                // Run integration tests using Maven (Failsafe Plugin)
+                bat 'mvn integration-test'
+            }
+        }
+        
+        stage('Code Analysis') {
+            steps {
+                // Run code analysis using SonarQube
+                bat 'sonar-scanner'
+            }
+        }
+        
+        stage('Security Scan') {
+            steps {
+                // Perform security scan using OWASP ZAP
+                bat 'zap-cli --zap-url http://localhost -t http://yourwebsite.com'
+            }
+        }
+        
+        stage('Deploy to Staging') {
+            steps {
+                // Deploy to staging server using AWS EC2 instance
+                bat 'jenkins-deploy --target staging'
+            }
+        }
+        
+        stage('Integration Tests on Staging') {
+            steps {
+                // Run integration tests on staging environment using Selenium
+                bat 'selenium-tests'
+            }
+        }
+        
+        stage('Deploy to Production') {
+            steps {
+                // Deploy to production server using AWS EC2 instance
+                bat 'jenkins-deploy --target production'
             }
         }
     }
     
     post {
         success {
-            mail to: "shalomingabo99@gmail.com",
-            subject: "Build Success",
-            body: "The build was successful"
-            echo 'This will run only if the build is successful'
+            // Send email notification for success
+            emailext subject: 'Pipeline Success',
+                      body: 'The pipeline ran successfully!',
+                      to: 'shalomingabo99@gmail.com',
+                      attachLog: true
         }
         failure {
-            echo 'This will run only if the build fails'
-        }
-        always {
-            echo 'This will run always'
+            // Send email notification for failure
+            emailext subject: 'Pipeline Failure',
+                      body: 'The pipeline failed. Please check logs for details.',
+                      to: 'shalomingabo99@gmail.com',
+                      attachLog: true
         }
     }
 }
+
