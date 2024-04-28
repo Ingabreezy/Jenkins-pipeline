@@ -8,6 +8,12 @@ pipeline {
                 echo 'Building...'
             }
         }
+        
+        stage('Complete') {
+            steps {
+                echo 'Completed'
+            }
+        }
     }
     
     post {
@@ -23,11 +29,5 @@ pipeline {
         always {
             echo 'This will run always'
         }
-    }
-}
-stage('Deploy') {
-    steps {
-        echo 'Deploying to deployment environment...'
-        // Add your deployment steps here
     }
 }
