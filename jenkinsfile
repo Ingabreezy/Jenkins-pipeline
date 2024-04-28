@@ -5,52 +5,52 @@ pipeline {
         stage('Build') {
             steps {
                 // Build code using Maven
-                echo ' Building package using Maven'
+                echo 'Building package using Maven'
             }
         }
         
         stage('Unit and Integration Tests') {
             steps {
                 // Run unit tests using Maven (Surefire Plugin)
-                echo ' Running unit tests using Maven
+                echo 'Running unit tests using Maven'
                 
                 // Run integration tests using Maven (Failsafe Plugin)
-                echo ' Running integration tests using Maven'
+                echo 'Running integration tests using Maven'
             }
         }
         
         stage('Code Analysis') {
             steps {
                 // Run code analysis using SonarQube
-                echo ' Running code analysis using SonarQube'
+                echo 'Running code analysis using SonarQube'
             }
         }
         
         stage('Security Scan') {
             steps {
                 // Perform security scan using OWASP ZAP
-                echo ' Performing security scan using OWASP ZAP'
+                echo 'Performing security scan using OWASP ZAP'
             }
         }
         
         stage('Deploy to Staging') {
             steps {
                 // Deploy to staging server using AWS EC2 instance
-                echo ' Deploying to staging server using AWS EC2 instance'
+                echo 'Deploying to staging server using AWS EC2 instance'
             }
         }
         
         stage('Integration Tests on Staging') {
             steps {
                 // Run integration tests on staging environment using Selenium
-                echo ' Running integration tests on staging environment using Selenium'
+                echo 'Running integration tests on staging environment using Selenium'
             }
         }
         
         stage('Deploy to Production') {
             steps {
                 // Deploy to production server using AWS EC2 instance
-                echo ' Deploying to production server using AWS EC2 instance'
+                echo 'Deploying to production server using AWS EC2 instance'
             }
         }
     }
