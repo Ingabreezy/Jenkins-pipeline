@@ -1,0 +1,26 @@
+pipeline {
+    agent any
+    
+    stages {
+        stage('Build') {
+            steps {
+                Building under construction// Add your build steps here
+            }
+        }
+        post {
+            success {
+                mail to: "shalomingabo99@gmail.com",
+                Subject: "Build Success",
+                body: "The build was successful"
+                echo 'This will run only if the build is successful'
+            }
+            failure {
+                echo 'This will run only if the build fails'
+            }
+            always {
+                echo 'This will run always'
+            }
+        }
+        
+    }
+}
