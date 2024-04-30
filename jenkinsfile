@@ -1,6 +1,3 @@
-Got it! Here's the modified script with the `attachments` set to always true:
-
-```groovy
 pipeline {
     agent any
     
