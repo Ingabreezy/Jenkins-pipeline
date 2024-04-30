@@ -30,7 +30,7 @@ pipeline {
         stage('Code Analysis') {
             steps {
                 // Integrate a code analysis tool to analyze the code
-                echo 'Running code analysis using SonarQube'
+                echo 'Running code analysis using SonarQube...'
             }
             post {
                 always {
