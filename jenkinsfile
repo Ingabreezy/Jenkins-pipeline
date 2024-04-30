@@ -15,7 +15,7 @@ pipeline {
                 echo 'Running unit tests using JUnit'
                 
                 // Run integration tests using a test automation tool
-                echo 'Running integration tests using Selenium'
+                echo 'Running integration tests using Selenium....'
             }
             post {
                 always {
