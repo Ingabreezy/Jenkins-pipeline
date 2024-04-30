@@ -35,21 +35,21 @@ pipeline {
         
         stage('Deploy to Staging') {
             steps {
-                // Deploy to staging server using AWS EC2 instance
+                // Deploy to staging server (AWS EC2 instance)
                 echo 'Deploying to staging server using AWS EC2 instance'
             }
         }
         
         stage('Integration Tests on Staging') {
             steps {
-                // Run integration tests on staging environment using Selenium
+                // Run integration tests on staging environment (Selenium)
                 echo 'Running integration tests on staging environment using Selenium'
             }
         }
         
         stage('Deploy to Production') {
             steps {
-                // Deploy to production server using AWS EC2 instance
+                // Deploy to production server (AWS EC2 instance)
                 echo 'Deploying to production server using AWS EC2 instance'
             }
         }
@@ -58,16 +58,16 @@ pipeline {
     post {
         success {
             // Send email notification for success
-            emailext subject: 'Pipeline Success',
+                      mail to: 'shalomingabo99@gmail.com',
+                      subject: 'Pipeline Success',
                       body: 'The pipeline ran successfully!',
-                      to: 'shalomingabo99@gmail.com',
                       attachLog: true
         }
         failure {
             // Send email notification for failure
-            emailext subject: 'Pipeline Failure',
+                    mail to: 'shalomingabo99@gmail.com',
+                      subject: 'Pipeline Failure',
                       body: 'The pipeline failed. Please check logs for details.',
-                      to: 'shalomingabo99@gmail.com',
                       attachLog: true
         }
     }
