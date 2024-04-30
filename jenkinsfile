@@ -1,97 +1,102 @@
+Got it! Here's the modified script with the `attachments` set to always true:
+
+```groovy
 pipeline {
     agent any
     
     stages {
         stage('Build') {
             steps {
-                // Build code using Maven
+                // Build code using Maven (or any other build automation tool)
                 echo 'Building package using Maven'
             }
         }
         
         stage('Unit and Integration Tests') {
             steps {
-                // Run unit tests using Maven (Surefire Plugin)
-                echo 'Running unit tests using Maven'
+                // Run unit tests using a test automation tool
+                echo 'Running unit tests using JUnit'
                 
-                // Run integration tests using Maven (Failsafe Plugin)
-                echo 'Running integration tests using Maven'
+                // Run integration tests using a test automation tool
+                echo 'Running integration tests using Selenium'
             }
             post {
-                success {
+                always {
                     mail to: 'shalomingabo99@gmail.com',
-                         subject: 'Unit and Integration Tests Success',
-                         body: 'Unit and Integration Tests have passed successfully!',
-                         attachLog: true
-                }
-                failure {
-                    mail to: 'shalomingabo99@gmail.com',
-                         subject: 'Unit and Integration Tests Failure',
-                         body: 'Unit and Integration Tests have failed. Please check logs for details.',
-                         attachLog: true
+                         subject: 'Unit and Integration Tests Result',
+                         body: 'Unit and Integration Tests have completed.',
+                         attachments: true
                 }
             }
         }
         
         stage('Code Analysis') {
             steps {
-                // Run code analysis using SonarQube
+                // Integrate a code analysis tool to analyze the code
                 echo 'Running code analysis using SonarQube'
             }
             post {
-                success {
+                always {
                     mail to: 'shalomingabo99@gmail.com',
-                         subject: 'Code Analysis Success',
-                         body: 'Code Analysis has passed successfully!',
-                         attachLog: true
-                }
-                failure {
-                    mail to: 'shalomingabo99@gmail.com',
-                         subject: 'Code Analysis Failure',
-                         body: 'Code Analysis has failed. Please check logs for details.',
-                         attachLog: true
+                         subject: 'Code Analysis Result',
+                         body: 'Code Analysis has completed.',
+                         attachments: true
                 }
             }
         }
         
         stage('Security Scan') {
             steps {
-                // Perform security scan using OWASP ZAP
+                // Perform a security scan on the code
                 echo 'Performing security scan using OWASP ZAP'
             }
             post {
-                success {
+                always {
                     mail to: 'shalomingabo99@gmail.com',
-                         subject: 'Security Scan Success',
-                         body: 'Security Scan has passed successfully!',
-                         attachLog: true
-                }
-                failure {
-                    mail to: 'shalomingabo99@gmail.com',
-                         subject: 'Security Scan Failure',
-                         body: 'Security Scan has failed. Please check logs for details.',
-                         attachLog: true
+                         subject: 'Security Scan Result',
+                         body: 'Security Scan has completed.',
+                         attachments: true
                 }
             }
         }
         
-        // Other stages omitted for brevity
+        stage('Deploy to Staging') {
+            steps {
+                // Deploy the application to staging server
+                echo 'Deploying to staging server using AWS EC2 instance'
+            }
+        }
         
+        stage('Integration Tests on Staging') {
+            steps {
+                // Run integration tests on the staging environment
+                echo 'Running integration tests on staging environment using Selenium'
+            }
+            post {
+                always {
+                    mail to: 'shalomingabo99@gmail.com',
+                         subject: 'Integration Tests on Staging Result',
+                         body: 'Integration Tests on Staging have completed.',
+                         attachments: true
+                }
+            }
+        }
+        
+        stage('Deploy to Production') {
+            steps {
+                // Deploy the application to production server
+                echo 'Deploying to production server using AWS EC2 instance'
+            }
+        }
     }
     
     // Global post section for overall pipeline status
     post {
-        success {
+        always {
             mail to: 'shalomingabo99@gmail.com',
-                 subject: 'Pipeline Success',
-                 body: 'The pipeline ran successfully!',
-                 attachLog: true
-        }
-        failure {
-            mail to: 'shalomingabo99@gmail.com',
-                 subject: 'Pipeline Failure',
-                 body: 'The pipeline failed. Please check logs for details.',
-                 attachLog: true
+                 subject: 'Pipeline Result',
+                 body: 'The pipeline run has completed.',
+                 attachments: true
         }
     }
 }
