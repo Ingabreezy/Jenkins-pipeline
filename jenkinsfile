@@ -52,7 +52,7 @@ pipeline {
                     mail to: 'shalomingabo99@gmail.com',
                          subject: 'Security Scan Result',
                          body: 'Security Scan has completed.',
-                         echo 'attachLog: true'
+                         echo 'attachLog:'
                 }
             }
         }
