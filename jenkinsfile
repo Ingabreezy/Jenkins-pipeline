@@ -19,10 +19,10 @@ pipeline {
             }
             post {
                 always {
-                    mail to: 'shalomingabo99@gmail.com',
-                         subject: 'Unit and Integration Tests Result',
-                         body: 'Unit and Integration Tests have completed.',
-                         attachments: true
+                    emailext attachLog: true,
+                             subject: 'Unit and Integration Tests Result',
+                             body: 'Unit and Integration Tests have completed.',
+                             to: 'shalomingabo99@gmail.com'
                 }
             }
         }
@@ -34,10 +34,10 @@ pipeline {
             }
             post {
                 always {
-                    mail to: 'shalomingabo99@gmail.com',
-                         subject: 'Code Analysis Result',
-                         body: 'Code Analysis has completed.',
-                         attachments: true
+                    emailext attachLog: true,
+                             subject: 'Code Analysis Result',
+                             body: 'Code Analysis has completed.',
+                             to: 'shalomingabo99@gmail.com'
                 }
             }
         }
@@ -49,10 +49,10 @@ pipeline {
             }
             post {
                 always {
-                    mail to: 'shalomingabo99@gmail.com',
-                         subject: 'Security Scan Result',
-                         body: 'Security Scan has completed.',
-                         attachments: true
+                    emailext attachLog: true,
+                             subject: 'Security Scan Result',
+                             body: 'Security Scan has completed.',
+                             to: 'shalomingabo99@gmail.com'
                 }
             }
         }
@@ -71,10 +71,10 @@ pipeline {
             }
             post {
                 always {
-                    mail to: 'shalomingabo99@gmail.com',
-                         subject: 'Integration Tests on Staging Result',
-                         body: 'Integration Tests on Staging have completed.',
-                         attachments: true
+                    emailext attachLog: true,
+                             subject: 'Integration Tests on Staging Result',
+                             body: 'Integration Tests on Staging have completed.',
+                             to: 'shalomingabo99@gmail.com'
                 }
             }
         }
@@ -90,10 +90,10 @@ pipeline {
     // Global post section for overall pipeline status
     post {
         always {
-            mail to: 'shalomingabo99@gmail.com',
-                 subject: 'Pipeline Result',
-                 body: 'The pipeline run has completed.',
-                 attachments: true
+            emailext attachLog: true,
+                     subject: 'Pipeline Result',
+                     body: 'The pipeline run has completed.',
+                     to: 'shalomingabo99@gmail.com'
         }
     }
 }
