@@ -49,7 +49,7 @@ pipeline {
         stage('Security Scan') {
             steps {
                 // Perform a security scan on the code
-                echo 'Performing security scan using OWASP ZAP'
+                echo 'Performing security scan using OWASP ZAP...'
             }
             post {
                 always {
