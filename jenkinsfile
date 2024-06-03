@@ -16,10 +16,10 @@ pipeline {
             post {
                 always {
                     script {
-                        mail to: 'shalomingabo99@gmail.com',
-                             subject: 'Unit and Integration Tests Result',
-                             body: 'Unit and Integration Tests have completed.',
-                             attachLog: true
+                        emailext attachLog: true, 
+                                 to: 'shalomingabo99@gmail.com', 
+                                 subject: 'Unit and Integration Tests Result', 
+                                 body: 'Unit and Integration Tests have completed.'
                     }
                 }
             }
@@ -32,10 +32,10 @@ pipeline {
             post {
                 always {
                     script {
-                        mail to: 'shalomingabo99@gmail.com',
-                             subject: 'Code Analysis Result',
-                             body: 'Code Analysis has completed.',
-                             attachLog: true
+                        emailext attachLog: true, 
+                                 to: 'shalomingabo99@gmail.com', 
+                                 subject: 'Code Analysis Result', 
+                                 body: 'Code Analysis has completed.'
                     }
                 }
             }
@@ -48,10 +48,10 @@ pipeline {
             post {
                 always {
                     script {
-                        mail to: 'shalomingabo99@gmail.com',
-                             subject: 'Security Scan Result',
-                             body: 'Security Scan has completed.',
-                             attachLog: true
+                        emailext attachLog: true, 
+                                 to: 'shalomingabo99@gmail.com', 
+                                 subject: 'Security Scan Result', 
+                                 body: 'Security Scan has completed.'
                     }
                 }
             }
@@ -70,10 +70,10 @@ pipeline {
             post {
                 always {
                     script {
-                        mail to: 'shalomingabo99@gmail.com',
-                             subject: 'Integration Tests on Staging Result',
-                             body: 'Integration Tests on Staging have completed.',
-                             attachLog: true
+                        emailext attachLog: true, 
+                                 to: 'shalomingabo99@gmail.com', 
+                                 subject: 'Integration Tests on Staging Result', 
+                                 body: 'Integration Tests on Staging have completed.'
                     }
                 }
             }
@@ -89,10 +89,10 @@ pipeline {
     post {
         always {
             script {
-                mail to: 'shalomingabo99@gmail.com',
-                     subject: 'Pipeline Result',
-                     body: 'The pipeline run has completed.',
-                     attachLog: true
+                emailext attachLog: true, 
+                         to: 'shalomingabo99@gmail.com', 
+                         subject: 'Pipeline Result', 
+                         body: 'The pipeline run has completed.'
             }
         }
     }
