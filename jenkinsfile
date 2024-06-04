@@ -1,10 +1,6 @@
 pipeline {
     agent any
     
-    environment {
-        LOG_FILE = 'pipeline.log'
-    }
-    
     stages {
         stage('Build') {
             steps {
@@ -20,11 +16,12 @@ pipeline {
             post {
                 always {
                     script {
-                        writeFile file: env.LOG_FILE, text: currentBuild.rawBuild.getLog().join('\n')
-                        mail to: 'shalomingabo99@gmail.com',
-                             subject: 'Unit and Integration Tests Result',
-                             body: 'Unit and Integration Tests have completed. Please find the attached log for details.',
-                             attachmentsPattern: env.LOG_FILE
+                        emailext(
+                            attachLog: true, 
+                            to: 'shalomingabo99@gmail.com', 
+                            subject: 'Unit and Integration Tests Result', 
+                            body: 'Unit and Integration Tests have completed. Please find the attached log for details.'
+                        )
                     }
                 }
             }
@@ -37,11 +34,12 @@ pipeline {
             post {
                 always {
                     script {
-                        writeFile file: env.LOG_FILE, text: currentBuild.rawBuild.getLog().join('\n')
-                        mail to: 'shalomingabo99@gmail.com',
-                             subject: 'Code Analysis Result',
-                             body: 'Code Analysis has completed. Please find the attached log for details.',
-                             attachmentsPattern: env.LOG_FILE
+                        emailext(
+                            attachLog: true, 
+                            to: 'shalomingabo99@gmail.com', 
+                            subject: 'Code Analysis Result', 
+                            body: 'Code Analysis has completed. Please find the attached log for details.'
+                        )
                     }
                 }
             }
@@ -54,11 +52,12 @@ pipeline {
             post {
                 always {
                     script {
-                        writeFile file: env.LOG_FILE, text: currentBuild.rawBuild.getLog().join('\n')
-                        mail to: 'shalomingabo99@gmail.com',
-                             subject: 'Security Scan Result',
-                             body: 'Security Scan has completed. Please find the attached log for details.',
-                             attachmentsPattern: env.LOG_FILE
+                        emailext(
+                            attachLog: true, 
+                            to: 'shalomingabo99@gmail.com', 
+                            subject: 'Security Scan Result', 
+                            body: 'Security Scan has completed. Please find the attached log for details.'
+                        )
                     }
                 }
             }
@@ -77,11 +76,12 @@ pipeline {
             post {
                 always {
                     script {
-                        writeFile file: env.LOG_FILE, text: currentBuild.rawBuild.getLog().join('\n')
-                        mail to: 'shalomingabo99@gmail.com',
-                             subject: 'Integration Tests on Staging Result',
-                             body: 'Integration Tests on Staging have completed. Please find the attached log for details.',
-                             attachmentsPattern: env.LOG_FILE
+                        emailext(
+                            attachLog: true, 
+                            to: 'shalomingabo99@gmail.com', 
+                            subject: 'Integration Tests on Staging Result', 
+                            body: 'Integration Tests on Staging have completed. Please find the attached log for details.'
+                        )
                     }
                 }
             }
@@ -97,11 +97,12 @@ pipeline {
     post {
         always {
             script {
-                writeFile file: env.LOG_FILE, text: currentBuild.rawBuild.getLog().join('\n')
-                mail to: 'shalomingabo99@gmail.com',
-                     subject: 'Pipeline Result',
-                     body: 'The pipeline run has completed. Please find the attached log for details.',
-                     attachmentsPattern: env.LOG_FILE
+                emailext(
+                    attachLog: true, 
+                    to: 'shalomingabo99@gmail.com', 
+                    subject: 'Pipeline Result', 
+                    body: 'The pipeline run has completed. Please find the attached log for details.'
+                )
             }
         }
     }
