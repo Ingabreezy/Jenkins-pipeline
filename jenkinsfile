@@ -4,24 +4,26 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                // Build code using Maven (or any other build automation tool)
                 echo 'Building package using Maven'
             }
         }
         
         stage('Unit and Integration Tests') {
             steps {
+                // Run unit tests using a test automation tool
                 echo 'Running unit tests using JUnit'
-                echo 'Running integration tests using JUnit'
+                
+                // Run integration tests using a test automation tool
+                echo 'Running integration tests using JUnit.'
             }
             post {
                 always {
                     script {
-                        emailext(
-                            attachLog: true, 
-                            to: 'shalomingabo99@gmail.com', 
-                            subject: 'Unit and Integration Tests Result', 
-                            body: 'Unit and Integration Tests have completed. Please find the attached log for details.'
-                        )
+                        mail to: 'shalomingabo99@gmail.com',
+                             subject: 'Unit and Integration Tests Result',
+                             body: 'Unit and Integration Tests have completed.',
+                             attachLog: true
                     }
                 }
             }
@@ -29,17 +31,16 @@ pipeline {
         
         stage('Code Analysis') {
             steps {
+                // Integrate a code analysis tool to analyze the code
                 echo 'Running code analysis using SonarQube...'
             }
             post {
                 always {
                     script {
-                        emailext(
-                            attachLog: true, 
-                            to: 'shalomingabo99@gmail.com', 
-                            subject: 'Code Analysis Result', 
-                            body: 'Code Analysis has completed. Please find the attached log for details.'
-                        )
+                        mail to: 'shalomingabo99@gmail.com',
+                             subject: 'Code Analysis Result',
+                             body: 'Code Analysis has completed.',
+                             attachLog: true
                     }
                 }
             }
@@ -47,17 +48,16 @@ pipeline {
         
         stage('Security Scan') {
             steps {
+                // Perform a security scan on the code
                 echo 'Performing security scan using OWASP ZAP...'
             }
             post {
                 always {
                     script {
-                        emailext(
-                            attachLog: true, 
-                            to: 'shalomingabo99@gmail.com', 
-                            subject: 'Security Scan Result', 
-                            body: 'Security Scan has completed. Please find the attached log for details.'
-                        )
+                        mail to: 'shalomingabo99@gmail.com',
+                             subject: 'Security Scan Result',
+                             body: 'Security Scan has completed.',
+                             attachLog: true
                     }
                 }
             }
@@ -65,23 +65,23 @@ pipeline {
         
         stage('Deploy to Staging') {
             steps {
-                echo 'Deploying to staging server using AWS EC2 instance...'
+                // Deploy the application to staging server
+                echo 'Deploying to staging server using AWS EC2 instance....'
             }
         }
         
         stage('Integration Tests on Staging') {
             steps {
+                // Run integration tests on the staging environment
                 echo 'Running integration tests on staging environment using Selenium'
             }
             post {
                 always {
                     script {
-                        emailext(
-                            attachLog: true, 
-                            to: 'shalomingabo99@gmail.com', 
-                            subject: 'Integration Tests on Staging Result', 
-                            body: 'Integration Tests on Staging have completed. Please find the attached log for details.'
-                        )
+                        mail to: 'shalomingabo99@gmail.com',
+                             subject: 'Integration Tests on Staging Result',
+                             body: 'Integration Tests on Staging have completed.',
+                             attachLog: true
                     }
                 }
             }
@@ -89,20 +89,20 @@ pipeline {
         
         stage('Deploy to Production') {
             steps {
+                // Deploy the application to production server
                 echo 'Deploying to production server using AWS EC2 instance'
             }
         }
     }
     
+    // Global post section for overall pipeline status
     post {
         always {
             script {
-                emailext(
-                    attachLog: true, 
-                    to: 'shalomingabo99@gmail.com', 
-                    subject: 'Pipeline Result', 
-                    body: 'The pipeline run has completed. Please find the attached log for details.'
-                )
+                mail to: 'shalomingabo99@gmail.com',
+                     subject: 'Pipeline Result',
+                     body: 'The pipeline run has completed.',
+                     attachLog: true
             }
         }
     }
